@@ -1,5 +1,5 @@
 # ContainerTests
-Based on Ralph Varjabedian's CLinkedList class example, I've built two C++ template class' for building linked lists using pointer-to-pointer. These are incomplete.
+Based on Ralph Varjabedian's CLinkedList class example, I've built two C++ template class' for building linked lists in the pointer-to-pointer technique. These are incomplete.
 
 The first of these, TList builds orginary linked lists while the other, TList2W builds doubly linked lists (2 Way). Both of these template class' share common functionality between them for ease of use. Additionally, both TList and TList2W has a rudimentary "Walk" method that allows the developer trasnvere the linked list without the need for direct access to the linked list nodes, which they're built upon.
 
