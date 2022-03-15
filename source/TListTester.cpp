@@ -3,6 +3,9 @@
 
 #include <Containers/TList.hxx>
 
+bool TListWalk();
+
+
 TList<const char*> list;
 
 TNodeID TListAdd(const char* string)
@@ -17,6 +20,28 @@ TNodeID TListAdd(const char* string)
     else
       printf("[%d]: \'%s\' **ADDED**\n", result, string);
     return result;
+  }
+  return 0;
+}
+
+TNodeID TListChange(const char* oldString, const char* newString)
+{
+  if (oldString == nullptr)
+    printf("[TList::Change]: Old string not specified.\n");
+  else
+  if (newString == nullptr)
+    printf("[TList::Change]: New string not specified.\n");
+  else
+  {
+    TNodeID result = list.Change(oldString, newString);
+    if (!result)
+      printf("[TList::Change]: Error changing \'%s\' to \'%s\'\n", oldString, newString);
+    else
+    {
+      printf("[TList::Change] \'%s\' changed to \'%s\'\n", oldString, newString);
+      TListWalk();
+      return result;
+    }
   }
   return 0;
 }
@@ -106,12 +131,13 @@ int main(void)
   // Phase 1 test: Add
   TListAdd("Star Trek: Enterprise");
   TListAdd("Star Trek");
-  TListAdd("Walker Texas Ranger");
+  TListAdd("Walker, Texas Ranger");
   TListAdd("Star Trek: The Next Generation");
   TListAdd("Star Trek: Deep Space Nine");
   TListAdd("Star Trek: Voyager");
   printf("\n");
   TListWalk();
+  TListChange("Walker, Texas Ranger", "Walker Texas Ranger");
 
   // Phase 2 test: Remove
   TListRemove("Walker Texas Ranger");

@@ -3,6 +3,8 @@
 
 #include <Containers/TList.hxx>
 
+bool TList2WWalk();
+
 TList2W<const char*> list2W;
 
 TNodeID TList2WAdd(const char* string)
@@ -17,6 +19,28 @@ TNodeID TList2WAdd(const char* string)
     else
       printf("[%d]: \'%s\' **ADDED**\n", result, string);
     return result;
+  }
+  return 0;
+}
+
+TNodeID TList2WChange(const char* oldString, const char* newString)
+{
+  if (oldString == nullptr)
+    printf("[TList2W::Change]: Old string not specified.\n");
+  else
+  if (newString == nullptr)
+    printf("[TList2W::Change]: New string not specified.\n");
+  else
+  {
+    TNodeID result = list2W.Change(oldString, newString);
+    if (!result)
+      printf("[TList2W::Change]: Error changing \'%s\' to \'%s\'\n", oldString, newString);
+    else
+    {
+      printf("[TList2W::Change] \'%s\' changed to \'%s\'\n", oldString, newString);
+      TList2WWalk();
+      return result;
+    }
   }
   return 0;
 }
@@ -123,12 +147,13 @@ int main(void)
   // Phase 1 test: Add
   TList2WAdd("Star Trek: Enterprise");
   TList2WAdd("Star Trek");
-  TList2WAdd("Walker Texas Ranger");
+  TList2WAdd("Walker, Texas Ranger");
   TList2WAdd("Star Trek: The Next Generation");
   TList2WAdd("Star Trek: Deep Space Nine");
   TList2WAdd("Star Trek: Voyager");
   printf("\n");
   TList2WWalk();
+  TList2WChange("Walker, Texas Ranger", "Walker Texas Ranger");
   TList2WPrev("Walker Texas Ranger");
   TList2WNext("Star Trek: Deep Space Nine");
 

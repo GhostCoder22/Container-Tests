@@ -25,6 +25,7 @@
       ~TList();
 
       TNodeID Add(T data);
+      TNodeID Change(T oldData, T newData);
       bool    Remove(T data);
       bool    Empty();
       bool    IsEmpty();
@@ -59,6 +60,7 @@
       ~TList2W();
 
       TNodeID Add(T data);
+      TNodeID Change(T oldData, T newData);
       bool    Remove(T data);
       bool    Empty();
       bool    IsEmpty();
@@ -113,6 +115,24 @@ template <class T> TNodeID TList<T>::Add(T data)
       (*ppNext)->id    = m_nNodes;
       (*ppNext)->pNext = nullptr;
       return m_nNodes;
+    }
+  }
+  return 0;
+}
+
+template <class T> TNodeID TList<T>::Change(T oldData, T newData)
+{
+  if ((m_nNodes > 0) && (oldData != nullptr) && (newData != nullptr))
+  {
+    TNode<T>** ppNode = &m_pList;
+    while (*ppNode)
+    {
+      if (memcmp(&(*ppNode)->data, &oldData, sizeof(T)) == 0)
+      {
+        (*ppNode)->data = newData;
+        return (*ppNode)->id;
+      }
+      ppNode = &(*ppNode)->pNext;
     }
   }
   return 0;
@@ -300,6 +320,24 @@ template <class T> TNodeID TList2W<T>::Add(T data)
       (*ppNext2W)->pPrev = (m_nNodes2W > 1 ? (*ppPrev2W) : (*ppNext2W));
       (*ppNext2W)->pNext = nullptr;
       return m_nNodes2W;
+    }
+  }
+  return 0;
+}
+
+template <class T> TNodeID TList2W<T>::Change(T oldData, T newData)
+{
+  if ((m_nNodes2W > 0) && (oldData != nullptr) && (newData != nullptr))
+  {
+    TNode2W<T>** ppNode2W = &m_pList2W;
+    while (*ppNode2W)
+    {
+      if (memcmp(&(*ppNode2W)->data, &oldData, sizeof(T)) == 0)
+      {
+        (*ppNode2W)->data = newData;
+        return (*ppNode2W)->id;
+      }
+      ppNode2W = &(*ppNode2W)->pNext;
     }
   }
   return 0;
