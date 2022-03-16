@@ -19,7 +19,7 @@
 				</Linker>
 			</Target>
 			<Target title="TList2W Tester">
-				<Option output="bin/TListTest" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/TList2WTest" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
