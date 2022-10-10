@@ -1,4 +1,4 @@
-/* Linked lists class template based on
+/* Linked list class template based on
    CLinkedList (C) 2000 Ralph Varjabedian */
 
 #ifndef __TLIST_HXX__
