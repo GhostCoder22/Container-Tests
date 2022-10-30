@@ -169,6 +169,7 @@ int main(void)
   TList2WPrev("Star Trek: Enterprise");
   TList2WPrev("Star Trek");
   TList2WNext("Star Trek: The Next Generation");
+  TList2WPrev("Star Trek: Voyager");
   TList2WNext("Star Trek: Voyager");
   system("PAUSE");
   printf("\n");
